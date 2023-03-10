@@ -11,3 +11,13 @@ import sklearn.preprocessing as sp
 このライブラリでone-hot-encodingが可能である.
 
 ### 欠損値の処理について
+
+データフレームをdfとすると,欠損値は
+***
+```python 
+df.isnull.sum()
+```
+***
+で取得可能である.
+
+置き換え方によってモデルの予測精度に影響をもたらす.
