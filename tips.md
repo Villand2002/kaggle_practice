@@ -1,6 +1,6 @@
-## 便利であると思ったpythonの構文などをまとめる.
+# 便利であると思ったpythonの構文などをまとめる.
 
-### 内包表記
+## 内包表記
 
 例1
 ***
@@ -13,6 +13,7 @@ print("\n")
 ***
 
 結果:{1: 2, 2: 4, 3: 6}
+
 例2
 ***
 ```python
@@ -27,7 +28,7 @@ print("\n")
 ***
 
 
-### 変数多数の関数
+## 多変数の関数
 
 例
 ***
@@ -45,7 +46,7 @@ func(1,2,3,4,5)
     
 #このようにすることで,変数の数を限定しなくてもよくなる.print関数などで使う際には*を外す必要がある. 
     
-### 型限定
+## 型限定
 c言語のように関数に入れる型を限定することができる.
 
 例
@@ -62,7 +63,7 @@ test(2,[1,2,3,4,5])
 ```
 ***
 
-### enumerateについて
+## enumerateについて
 
 
 要素と添え字を同時に取り出したくなった時に用いられる.
@@ -84,7 +85,49 @@ for i, v in enumerate(list):
 
 one-hot-encodingなどで使われることがある.
 
-#組み込み関数
-#map関数    
+## 高階関数
 
+### map関数    
+第一引数に関数、第二引数にシーケンスを指定する.加工元となるを第リストなどを第二引数に指定し、それをどのように加工するのかというところが第一引数によって指定する.
 例
+***
+```python
+sample1_list = [i for i in range(5)]
+def multi(x):
+    y = x*2
+    return y
+sample2_list = map(multi, sample1_list)
+print(list(sample2_list))
+#[0, 2, 4, 6, 8]
+```
+***
+
+### filter関数    
+filter関数はリストやタプルの要素のうち関数を適用した結果が True となるものだけを返す関数である.
+例
+***
+```python
+
+a = [-1, 3, -5, 7, -9]
+
+print list(filter(lambda x: abs(x) > 5, a))
+
+(x for x in a if abs(x) > 5)  # => 上記 filter と同じ結果
+
+```
+***
+
+### reduce関数    
+
+ reduce関数はリストやタプルの要素を足しあわせたりかけあわせたりする関数である.
+例
+***
+```python
+import functools
+from functools import reduce
+
+lst=[1,2,3,4,5]
+print(functools.reduce(lambda a,b:a+str(b),lst,""))
+# 1234
+```
+***
